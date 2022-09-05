@@ -4,6 +4,8 @@ GENERATED_FILES = 	$(wildcard *.deps) \
 					$(wildcard *.stl) \
 					$(wildcard *.generated.scad)
 
+VERSION := $(shell ./get_version.sh)
+
 .phony: all clean
 
 all: ${TARGETS}
@@ -16,7 +18,7 @@ include $(wildcard *.deps)
 	echo 'use <main.scad>\n$*();' > $@
 
 %.stl: %.generated.scad
-	openscad -DFN=64 -D "MODELVER=\"$(shell git rev-parse --short=6 HEAD)\"" -m make -o $@ -d $@.deps $<
+	openscad -DFN=64 -D "MODELVER=\"${VERSION}\"" -m make -o $@ -d $@.deps $<
 
 image:
 	openscad -DFN=32 --render --imgsize 1600,1200 -o main.png main.scad

@@ -59,7 +59,7 @@ cam_slot_size = 16;
 
 // Generation constants
 
-MODELVER = "000000";
+MODELVER = "000000+00";
 
 FN = 32;
 
@@ -105,11 +105,9 @@ module servo_fit_model() // make me
 module versiontext()
 {
     linear_extrude(layer_height)
-    translate([-8,5,0])
+    translate([0,0,0])
         union(){
-        translate([-5,0,0])
-            text(text="V  ", size = 4, font="Liberation:style=Narrow");
-        text(text=model_version, size = 4, font="Liberation:style=Narrow");
+        text(text=model_version, size = 3, font="Liberation:style=Narrow", halign="center");
         }
 }
 
@@ -156,7 +154,7 @@ module box()
             translate([(box_size_x/2)-pins_width-outer_wall_thickness,box_size_y-outer_wall_thickness,box_size_z-outer_wall_thickness-pins_width*2])
                 cube([pins_width, outer_wall_thickness, pins_width*2]);
             // Version text
-            translate([0,box_size_y-layer_height,0])
+            translate([0,box_size_y-layer_height,box_size_z/6])
             rotate([90,0,180])
                 versiontext();
             // Logo
@@ -208,7 +206,7 @@ module lid()
             lid_thickness+lid_box_tolerance+outer_wall_thickness])
             cube([lid_body_x, lid_height-lid_thickness-(servo_height-servo_wings_offset)+servo_wings_thickness, servo_thickness+2*lid_box_tolerance]);
 
-        translate([0, layer_height, 8])
+        translate([0, layer_height, box_size_z/2])
             rotate([90,0,0])
             versiontext();
     }
