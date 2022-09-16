@@ -11,8 +11,8 @@ servo_height = 32;
 servo_thickness = 12.5;
 servo_wings_width = 32.5;
 servo_wings_offset = 16.5; // Bottom of servo till bottom of wings
-servo_wings_thickness = 2.5;
-servo_wing_hole_diameter = 2.2;
+servo_wings_thickness = 2;
+servo_wing_hole_diameter = 2.5;
 
 cam_height = 1.5;
 
@@ -107,7 +107,7 @@ module versiontext()
     linear_extrude(layer_height)
     translate([0,0,0])
         union(){
-        text(text=model_version, size = 3, font="Liberation:style=Narrow", halign="center");
+        text(text=model_version, size = 4.2, halign="center");
         }
 }
 
